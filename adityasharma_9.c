@@ -9,18 +9,18 @@ int enqueueTop = -1;
 
 int dequeueStack[length];
 int dequeueTop = -1;
- 
+
 void enqueuePush(int element)
 {
-    if(enqueueTop < length-1)
+    if (enqueueTop < length - 1)
         enqueueStack[++enqueueTop] = element;
     else
         printf("Stack Overflow, Use bigger stack");
 }
- 
+
 int enqueuePop()
 {
-    if(enqueueTop == -1)
+    if (enqueueTop == -1)
         return -999;
     else
         return enqueueStack[enqueueTop--];
@@ -28,7 +28,7 @@ int enqueuePop()
 
 bool enqueueIsFull()
 {
-    if(enqueueTop < length - 1)
+    if (enqueueTop < length - 1)
         return false;
     else
         return true;
@@ -36,7 +36,7 @@ bool enqueueIsFull()
 
 bool enqueueIsEmpty()
 {
-    if(enqueueTop < 0)
+    if (enqueueTop < 0)
         return true;
     else
         return false;
@@ -44,15 +44,15 @@ bool enqueueIsEmpty()
 
 void dequeuePush(int element)
 {
-    if(dequeueTop < length-1)
+    if (dequeueTop < length - 1)
         dequeueStack[++dequeueTop] = element;
     else
         printf("Stack Overflow, Use bigger stack");
 }
- 
+
 int dequeuePop()
 {
-    if(dequeueTop == -1)
+    if (dequeueTop == -1)
         return -999;
     else
         return dequeueStack[dequeueTop--];
@@ -60,7 +60,7 @@ int dequeuePop()
 
 bool dequeueIsFull()
 {
-    if(dequeueTop < length - 1)
+    if (dequeueTop < length - 1)
         return false;
     else
         return true;
@@ -68,7 +68,7 @@ bool dequeueIsFull()
 
 bool dequeueIsEmpty()
 {
-    if(dequeueTop < 0)
+    if (dequeueTop < 0)
         return true;
     else
         return false;
@@ -85,7 +85,7 @@ void enqueue(int theElement)
 
 int dequeue()
 {
-    while(!enqueueIsEmpty())
+    while (!enqueueIsEmpty())
     {
         dequeuePush(enqueuePop());
     }
@@ -95,18 +95,59 @@ int dequeue()
 
 int main(void)
 {
-    enqueue(1);
-    enqueue(2);
-    enqueue(6);
-    enqueue(3);
-    enqueue(4);
+    enqueue(51);
+    enqueue(52);
+    enqueue(53);
+    enqueue(54);
+    enqueue(55);
 
-    printf("%d\n", dequeue());
-    printf("%d\n", dequeue());
-    printf("%d\n", dequeue());
-    printf("%d\n", dequeue());
-    printf("%d\n", dequeue());
-    printf("%d\n", dequeue());
+    int temp;
 
+    temp = dequeue();
+    if (temp != -999)
+        printf("%d\n", temp);
+    else
+        puts("Underflow");
 
+    temp = dequeue();
+    if (temp != -999)
+        printf("%d\n", temp);
+    else
+        puts("Underflow");
+
+    temp = dequeue();
+    if (temp != -999)
+        printf("%d\n", temp);
+    else
+        puts("Underflow");
+
+    temp = dequeue();
+    if (temp != -999)
+        printf("%d\n", temp);
+    else
+        puts("Underflow");
+
+    temp = dequeue();
+    if (temp != -999)
+        printf("%d\n", temp);
+    else
+        puts("Underflow");
+
+    temp = dequeue();
+    if (temp != -999)
+        printf("%d\n", temp);
+    else
+        puts("Underflow");
+
+    temp = dequeue();
+    if (temp != -999)
+        printf("%d\n", temp);
+    else
+        puts("Underflow");
+
+    temp = dequeue();
+    if (temp != -999)
+        printf("%d\n", temp);
+    else
+        puts("Underflow");
 }

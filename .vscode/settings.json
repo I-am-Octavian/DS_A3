@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "memory.h": "c",
+        "features.h": "c",
+        "array": "c",
+        "deque": "c",
+        "vector": "c",
+        "string_view": "c"
+    }
+}
