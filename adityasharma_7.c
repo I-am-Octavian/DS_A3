@@ -2,48 +2,64 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define length 100
+#define length 5
 
 int queue[length];
-int front = 0;
+int front = -1;
 int rear = -1;
 
 void resetQueue()
 {
-    front = 0;
+    front = -1;
     rear = -1;
 }
 
 void enqueue(int theElement)
 {
-    if(rear == length-1)
-        printf("Overflow!!!\n");
+    if((rear+1)%length == front)
+    {
+        puts("Overflow!!!");
+    }
     else
     {
-        queue[++rear] = theElement;
+        if(front == -1)
+        {
+            front = 0;
+            rear = 0;
+            queue[rear] = theElement;
+        }
+        else
+        {
+            rear = (rear + 1)%length;
+            queue[rear] = theElement;
+        }
     }
 }
 
 int dequeue()
 {
     if(rear == -1)
-        return -999; // Underflow
+        return -999;
     else
     {
-        int temp = queue[front];
-        front++;
-
-        if(front > rear)
+        int returnValue;
+        if(front == rear) // Only one element in the queue
+        {
+            returnValue = queue[front];
             resetQueue();
-
-        return temp;
-        
+        }
+        else
+        {
+            returnValue = queue[front];
+            front = ++front % length;
+        }
+        return returnValue;
     }
 }
 
 bool isFullQueue()
 {
-    if(rear == length-1)
+    if((rear+1)%length == front)
         return true;
     else
         return false;
@@ -51,7 +67,7 @@ bool isFullQueue()
 
 bool isEmptyQueue()
 {
-    if(front > rear)
+    if(rear == -1)
         return true;
     else
         return false;
@@ -59,5 +75,26 @@ bool isEmptyQueue()
 
 int main(void)
 {
-    //
+    enqueue(5);
+    enqueue(7);
+    printf("%d\n", dequeue());
+    enqueue(17);
+    enqueue(75);
+    printf("%d\n", dequeue());
+    printf("%d\n", dequeue());
+    enqueue(71);
+    enqueue(27);
+    printf("%d\n", dequeue());
+    enqueue(76);
+    enqueue(70);
+    enqueue(48);
+    enqueue(45);
+    printf("%d\n", dequeue());
+    printf("%d\n", dequeue());
+    printf("%d\n", dequeue());
+    printf("%d\n", dequeue());
+    printf("%d\n", dequeue());
+    printf("%d\n", dequeue());
+
+
 }
