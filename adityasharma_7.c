@@ -95,6 +95,4 @@ int main(void)
     printf("%d\n", dequeue());
     printf("%d\n", dequeue());
     printf("%d\n", dequeue());
-
-
 }
