@@ -11,12 +11,14 @@ typedef struct Node
 } Node;
 
 Node* hashTableSC[length];
+int hashTableLP[length];
 
 void init()
 {
     for(int i = 0; i < length; i++)
     {
         hashTableSC[i] = NULL;
+        hashTableLP[i] = -1;
     }
 }
 // Probably implement a better hash function
@@ -105,9 +107,79 @@ void deleteSC(int theElement)
     }
 }
 
-void linearProbing(int theElement)
+void insertLP(int theElement)
 {
-    //
+    int key = hash(theElement);
+    if(hashTableLP[key] == -1)
+    {
+        hashTableLP[key] = theElement;
+    }
+    else
+    {
+        int travCounter = 0;
+        for(int i = 0; i < length; i++)
+        {
+            travCounter++;
+            key = (hash(theElement) + travCounter)%length;
+
+            if(hashTableLP[key] == -1)
+            {
+                hashTableLP[key] = theElement;
+                break;
+            }
+            
+        }
+    }
+}
+
+void deleteLP(int theElement)
+{
+    int key = hash(theElement);
+    if(hashTableLP[key] == theElement)
+    {
+        hashTableLP[key] = -1;
+    }
+    else
+    {
+        int travCounter = 0;
+        for(int i = 0; i < length; i++)
+        {
+            travCounter++;
+            key = (hash(theElement) + travCounter)%length;
+
+            if(hashTableLP[key] == theElement)
+            {
+                hashTableLP[key] = -1;
+                break;
+            }
+        }
+
+        puts("Element Not Found in the Hash Table");
+    }
+}
+
+bool searchLP(int theElement)
+{
+    int key = hash(theElement);
+    if(hashTableLP[key] == theElement)
+    {
+        return true;
+    }
+    else
+    {
+        int travCounter = 0;
+        for(int i = 0; i < length; i++)
+        {
+            travCounter++;
+            key = (hash(theElement) + travCounter)%length;
+
+            if(hashTableLP[key] == theElement)
+            {
+                return true;
+            }
+        }
+    return false;
+    }
 }
 
 int main(void)

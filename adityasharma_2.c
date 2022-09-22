@@ -43,15 +43,15 @@ void display()
 void reverseLinkdedList()
 {
     Node* lastNode = NULL;
+    Node* tempNode = NULL;
     Node* nextNode = List;
-    Node* tempNode = List;
 
-    while(tempNode != NULL)
+    while(nextNode != NULL)
     {
-        nextNode = tempNode->next;
+        tempNode = nextNode;
+        nextNode= tempNode->next;
         tempNode->next = lastNode;
         lastNode = tempNode;
-        tempNode = nextNode;
     }
     List = lastNode;
 }
